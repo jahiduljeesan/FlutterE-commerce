@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/componants/bottom_nav.dart';
 import 'package:flutter_ecommerce/pages/cart_page.dart';
+import 'package:flutter_ecommerce/pages/home_drawer.dart';
 import 'package:flutter_ecommerce/pages/shop_page.dart';
 
 class Homepage extends StatefulWidget {
@@ -11,9 +12,8 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-
-
   int _selectedIndex = 0;
+
   void parseBottomNav(int index) {
     setState(() {
       _selectedIndex = index;
@@ -24,7 +24,7 @@ class _HomepageState extends State<Homepage> {
     //shop page
     ShopPage(),
     //cart page
-    CartPage()
+    CartPage(),
   ];
 
   @override
@@ -35,6 +35,19 @@ class _HomepageState extends State<Homepage> {
         onTabChange: (index) => parseBottomNav(index),
       ),
       body: navPages[_selectedIndex],
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: Builder(
+          builder: (context) => IconButton(
+            onPressed: () => Scaffold.of(context).openDrawer(),
+            icon: Icon(Icons.menu, color: Colors.grey[900]),
+          ),
+        ),
+      ),
+      drawer: Drawer(
+        backgroundColor: Colors.grey.shade900,
+        child: HomeDrawer(),
+      ),
     );
   }
 }
