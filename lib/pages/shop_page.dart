@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce/model/shoes.dart';
+import 'package:flutter_ecommerce/styles/shoes_style.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -8,6 +10,9 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
+
+  List<Shoes> shoes = Shoes.getShoeList();
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -23,7 +28,7 @@ class _ShopPageState extends State<ShopPage> {
               decorationStyle: TextDecorationStyle.dotted
             ),
           ),
-          const SizedBox(height: 20,),
+          const SizedBox(height: 25,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
@@ -37,13 +42,26 @@ class _ShopPageState extends State<ShopPage> {
                   'See more',
                   style: TextStyle(
                     fontSize: 18,
+                    color: Colors.blue,
                     fontWeight: FontWeight.normal,
                     decoration: TextDecoration.underline,
+                    decorationColor: Colors.blue
                   ),
                 ),
               ],
             ),
           ),
+          const SizedBox(height: 20,),
+          SizedBox(
+            height: 350,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context,index){
+                return ShoesStyle(shoes: shoes[index]);
+              },
+              itemCount: shoes.length,
+            ),
+          )
         ],
       ),
     );
