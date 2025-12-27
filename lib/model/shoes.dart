@@ -20,43 +20,34 @@ class Shoes {
       Shoes(
         name: 'Air Jordan',
         price: 45.0,
-        imagePath: 'libs/assets/icons/air_jordan.avif',
+        imagePath: 'lib/assets/icons/air_jordan.avif',
         bgColor: Colors.white
       )
     );
 
     shoes.add(
         Shoes(
-            name: 'Air Jordan',
-            price: 45.0,
-            imagePath: 'libs/assets/icons/air_jordan.avif',
+            name: 'Air Force',
+            price: 60.0,
+            imagePath: 'lib/assets/icons/air_jordan.avif',
             bgColor: Colors.white
         )
     );
 
     shoes.add(
         Shoes(
-            name: 'Air Jordan',
-            price: 45.0,
-            imagePath: 'libs/assets/icons/air_jordan.avif',
+            name: 'Nike Structure',
+            price: 47.0,
+            imagePath: 'lib/assets/icons/air_jordan.avif',
             bgColor: Colors.white
         )
     );
 
     shoes.add(
         Shoes(
-            name: 'Air Jordan',
-            price: 45.0,
-            imagePath: 'libs/assets/icons/air_jordan.avif',
-            bgColor: Colors.white
-        )
-    );
-
-    shoes.add(
-        Shoes(
-            name: 'Air Jordan',
-            price: 45.0,
-            imagePath: 'libs/assets/icons/air_jordan.avif',
+            name: 'Air Max Moto',
+            price: 40.0,
+            imagePath: 'lib/assets/icons/air_jordan.avif',
             bgColor: Colors.white
         )
     );
