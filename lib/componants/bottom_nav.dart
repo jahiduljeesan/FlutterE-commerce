@@ -22,7 +22,7 @@ class _BottomNavState extends State<BottomNav> {
       child: GNav(
         mainAxisAlignment: MainAxisAlignment.center,
         color: Colors.grey[700],
-        tabBackgroundColor: Colors.grey.shade100,
+        tabBackgroundColor: Colors.grey.shade200,
         onTabChange: (index) => widget.onTabChange(index),
         tabBorderRadius: 16,
         curve: Curves.easeIn,
