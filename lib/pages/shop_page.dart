@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce/databases/cart_database.dart';
 import 'package:flutter_ecommerce/model/shoes.dart';
 import 'package:flutter_ecommerce/styles/shoes_style.dart';
+import 'package:hive/hive.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -10,6 +12,9 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
+  //reference the box
+  final _box = Hive.box('cart_box');
+  CartDatabase db = CartDatabase();
 
   List<Shoes> shoes = Shoes.getShoeList();
 
