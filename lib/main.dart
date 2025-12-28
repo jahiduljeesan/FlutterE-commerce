@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/pages/intro_page.dart';
+import 'package:hive_flutter/adapters.dart';
 
-void main() {
+void main() async{
+  await Hive.initFlutter();
+  await Hive.openBox('cart_box');
   runApp(const MyApp());
 }
 
