@@ -3,8 +3,9 @@ import 'package:flutter_avif/flutter_avif.dart';
 import 'package:flutter_ecommerce/model/shoes.dart';
 
 class ShoesStyle extends StatefulWidget {
-  final Shoes shoes; // better to use final instead of required this.shoes
-  const ShoesStyle({super.key, required this.shoes});
+  final Shoes shoes;
+  final VoidCallback onItemTap;
+  const ShoesStyle({super.key, required this.shoes, required this.onItemTap});
 
   @override
   State<ShoesStyle> createState() => _ShoesStyleState();
@@ -81,17 +82,20 @@ class _ShoesStyleState extends State<ShoesStyle> {
                     ],
                   ),
                 ),
-                Container(
-                  height: 55,
-                  width: 55,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[900],
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15)
-                    )
-                  ),
-                  child: Center(
-                    child: Icon(Icons.add,color: Colors.white,),
+                GestureDetector(
+                  onTap: widget.onItemTap,
+                  child: Container(
+                    height: 55,
+                    width: 55,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[900],
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15)
+                      )
+                    ),
+                    child: Center(
+                      child: Icon(Icons.add,color: Colors.white,),
+                    ),
                   ),
                 )
               ],

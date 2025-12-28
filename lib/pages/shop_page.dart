@@ -18,6 +18,17 @@ class _ShopPageState extends State<ShopPage> {
 
   List<Shoes> shoes = Shoes.getShoeList();
 
+  void onItemTap(int index) {
+    db.shoesCart.add(shoes[index]);
+    db.updateData();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Added to cart'),
+        duration: Duration(seconds: 1),
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -62,7 +73,10 @@ class _ShopPageState extends State<ShopPage> {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemBuilder: (context,index){
-                return ShoesStyle(shoes: shoes[index]);
+                return ShoesStyle(
+                  shoes: shoes[index],
+                  onItemTap: () => onItemTap(index),
+                );
               },
               itemCount: shoes.length,
             ),
