@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/databases/cart_database.dart';
+import 'package:flutter_ecommerce/model/cart.dart';
 import 'package:flutter_ecommerce/model/shoes.dart';
+import 'package:flutter_ecommerce/providers/cart_provider.dart';
 import 'package:flutter_ecommerce/styles/shoes_style.dart';
 import 'package:hive/hive.dart';
+import 'package:provider/provider.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -11,16 +14,18 @@ class ShopPage extends StatefulWidget {
   State<ShopPage> createState() => _ShopPageState();
 }
 
+
 class _ShopPageState extends State<ShopPage> {
-  //reference the box
-  final _box = Hive.box('cart_box');
-  CartDatabase db = CartDatabase();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   List<Shoes> shoes = Shoes.getShoeList();
 
-  void onItemTap(int index) {
-    db.shoesCart.add(shoes[index]);
-    db.updateData();
+  void onItemTap(Shoes shoe) {
+    //show success
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('Added to cart'),
@@ -73,9 +78,20 @@ class _ShopPageState extends State<ShopPage> {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemBuilder: (context,index){
-                return ShoesStyle(
-                  shoes: shoes[index],
-                  onItemTap: () => onItemTap(index),
+                final shoe = shoes[index];
+                return Consumer<CartProvider>(
+                  builder: (context,cart,_) {
+                    return ShoesStyle(
+                      shoes: shoe,
+                      onItemTap: () {
+                        cart.addToCart(shoe);
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Added to cart!'),duration: Duration(milliseconds: 800),)
+                        );
+                      }
+                    );
+                  }
                 );
               },
               itemCount: shoes.length,

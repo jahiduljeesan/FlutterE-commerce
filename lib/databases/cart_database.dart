@@ -1,19 +1,15 @@
-import 'package:flutter_ecommerce/model/shoes.dart';
+import 'package:flutter_ecommerce/model/cart.dart';
 import 'package:hive/hive.dart';
 
 class CartDatabase {
-  List<Shoes> shoesCart = [];
-  late final Box _box;
+  final Box<Cart> box = Hive.box<Cart>('cart_box');
 
-  CartDatabase() {
-    _box = Hive.box('cart_box');
-  }
+  List<Cart> getCart() => box.values.toList();
 
-  void loadData() {
-    shoesCart = _box.get('TASKS',defaultValue: []) ?? [];
-  }
-
-  void updateData() {
-    _box.put('TASKS',shoesCart);
+  void saveCart(List<Cart> items) {
+    box.clear();
+    for(var item in items) {
+      box.add(item);
+    }
   }
 }
