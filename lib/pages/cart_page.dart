@@ -40,6 +40,8 @@ class _CartPageState extends State<CartPage> {
                     subtitle: Text('Qty: ${item.quantity}'),
                     trailing: Text(
                       '\$${item.shoes.price * item.quantity}',
+                      style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700),
+
                     ),
                   );
                 },
@@ -74,7 +76,7 @@ class _CartPageState extends State<CartPage> {
                           ),
                         ),
                         Text(
-                          '\$ 230.0',
+                          '\$${cart.totalPrice}',
                           style: TextStyle(
                               fontSize: 20,
                               color: Colors.black
